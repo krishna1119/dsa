@@ -2,21 +2,21 @@
 #[ 4,2,1,7,8,1,2,8,1,0]
 
 
-def maxSumOfSubArray(arr):
+def maxSumOfSubArray(arr,k):
     res =[]
-    current =sum(arr[0:3])
+    current =0
     maxSum = float('-inf')
 
-    l,r = 0, 3
-    while r<len(arr):
-        maxSum = max(maxSum, current)
-        current = current - arr[l] + arr[r]
-        l+=1
-        r+=1
+    for i in range(len(arr)):
+        current += arr[i]
+        if (i>=k-1):
+            maxSum = max(maxSum, current)
+            current -= arr[i-(k-1)]
+    
     return maxSum
 
 
-arr= [4,2,1,7,8,2,8,1,0]
-print(maxSumOfSubArray(arr))
+arr= [4,2,1,7,8,1,2,8,1,0]
+print(maxSumOfSubArray(arr,3))
 
 
